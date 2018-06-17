@@ -34,10 +34,16 @@ module Revealcr
         end
       end
 
+      if args.empty?
+        STDERR.puts parser
+        exit(1)
+      end
+
       @file = args.first
       if @file.blank? || !File.exists?(@file)
-        STDERR.puts "#{@file} not found"
+        STDERR.puts "#{@file} not found."
         STDERR.puts parser
+        exit(1)
       end
     end
 
