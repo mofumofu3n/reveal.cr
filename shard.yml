@@ -10,4 +10,4 @@ license: MIT
 
 targets:
   revealcr:
-    main: revealcr/revealcr.cr
+    main: src/reveal.cr
