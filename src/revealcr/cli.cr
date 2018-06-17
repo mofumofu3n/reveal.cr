@@ -17,9 +17,9 @@ module Revealcr
     def parse_option!(args)
       parser = OptionParser.parse(args) do |parser|
         parser.banner = "Usage: revealcr [options] [file]"
-        parser.on("-p PORT", "--port=PORT", "port with running") do |v| 
-          if /[0-9]+/ =~ v 
-            @port = v.to_i 
+        parser.on("-p PORT", "--port=PORT", "port with running") do |v|
+          if /[0-9]+/ =~ v
+            @port = v.to_i
           else
             STDERR.puts "'PORT' is only numeric value."
             STDERR.puts parser
@@ -46,6 +46,5 @@ module Revealcr
         exit(1)
       end
     end
-
   end
 end
