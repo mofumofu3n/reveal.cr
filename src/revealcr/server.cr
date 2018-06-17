@@ -13,7 +13,8 @@ module Revealcr
         Handler.new(@file),
       ])
 
-      server.bind_tcp "127.0.0.1", @port
+      address = server.bind_tcp "127.0.0.1", @port
+      puts "Open http://#{address.address}:#{address.port}"
       server.listen
     end
 
