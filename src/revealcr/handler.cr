@@ -5,6 +5,7 @@ module Revealcr
     include HTTP::Handler
 
     def initialize(@file : String)
+      @base_dir = File.expand_path("../../", __DIR__)
     end
 
     def call(context)
@@ -16,7 +17,7 @@ module Revealcr
         context.response.content_type = "text/html"
         context.response.print Render.new(@file).to_s
       when /^\/revealjs\//
-        file_path = "assets#{original_path}"
+        file_path = File.join(@base_dir, "assets", original_path)
         context.response.content_type = self.mime_type(file_path)
         File.open(file_path) do |file|
           IO.copy(file, context.response)
