@@ -1,6 +1,6 @@
-# revealcr
+# reveal.cr
 
-TODO: Write a description here
+**reveal.cr** is command to view simply a markdown presentation file with **reveal.js** on localhost.
 
 ## Installation
 
@@ -12,22 +12,31 @@ shards build -v
 
 ## Usage
 
-```bash
-reavelcr [options] markdown.md
+```
+Usage: revealcr [options] [index.md]
+    -p PORT, --port=PORT             port with running
+    -h, --help                       Show this help
 ```
 
-## Development
+## Example
 
-TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/revealcr/fork>)
+1. Fork it (<https://github.com/mofumofu3n/reveal.cr/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
+## See Also
+
+- [hakimel/reveal.js](https://github.com/hakimel/reveal.js)
+
+## Inspired
+
+- [yusukebe/revealgo](https://github.com/yusukebe/revealgo)
+
 ## Contributors
 
-- [your-github-user](https://github.com/your-github-user) mofumofu3n - creator, maintainer
+- [mofumofu3n](https://github.com/mofumofu3n) - creator, maintainer
