@@ -4,7 +4,7 @@ require "option_parser"
 module Revealcr
   class CLI
     @port = 8080
-    @file = ""
+    @file = "index.md"
 
     def initialize(args = [] of String)
       parse_option!(args)
@@ -16,7 +16,7 @@ module Revealcr
 
     def parse_option!(args)
       parser = OptionParser.parse(args) do |parser|
-        parser.banner = "Usage: revealcr [options] [file]"
+        parser.banner = "Usage: revealcr [options] [index.md]"
         parser.on("-p PORT", "--port=PORT", "port with running") do |v|
           if /[0-9]+/ =~ v
             @port = v.to_i
@@ -34,14 +34,10 @@ module Revealcr
         end
       end
 
-      if args.empty?
-        STDERR.puts parser
-        exit(1)
-      end
+      @file = args.first? || @file
 
-      @file = args.first
-      if @file.blank? || !File.exists?(@file)
-        STDERR.puts "#{@file} not found."
+      if !File.exists?(@file)
+        STDERR.puts "[ERROR] #{@file} not found."
         STDERR.puts parser
         exit(1)
       end
