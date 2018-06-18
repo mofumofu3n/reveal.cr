@@ -4,21 +4,17 @@ TODO: Write a description here
 
 ## Installation
 
-Add this to your application's `shard.yml`:
-
-```yaml
-dependencies:
-  revealcr:
-    github: your-github-user/revealcr
+```
+git clone https://github.com/mofumofu3n/reveal.cr.git
+cd reveal.cr
+shards build -v
 ```
 
 ## Usage
 
-```crystal
-require "revealcr"
+```bash
+reavelcr [options] markdown.md
 ```
-
-TODO: Write usage instructions here
 
 ## Development
 
