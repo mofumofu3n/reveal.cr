@@ -2,7 +2,7 @@ require "http/server"
 
 module Revealcr
   class Server
-    def initialize(@port : Int32, @file : String)
+    def initialize(@option : CLI::Option)
     end
 
     def serve
@@ -10,10 +10,10 @@ module Revealcr
         HTTP::ErrorHandler.new,
         HTTP::LogHandler.new,
         HTTP::CompressHandler.new,
-        Handler.new(@file),
+        Handler.new(@option),
       ])
 
-      address = server.bind_tcp "127.0.0.1", @port
+      address = server.bind_tcp "127.0.0.1", @option.port
       puts "Open http://#{address.address}:#{address.port}"
       server.listen
     end
