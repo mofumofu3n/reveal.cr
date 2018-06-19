@@ -25,7 +25,7 @@ module Revealcr
     def parse_option!(args)
       parser = OptionParser.parse(args) do |parser|
         parser.banner = "Usage: revealcr [options] [index.md]"
-        parser.on("-p PORT", "--port=PORT", "port with running") do |v|
+        parser.on("-p PORT", "--port=PORT", "port with running. default: 4000") do |v|
           if /[0-9]+/ =~ v
             @option.port = v.to_i
           else
@@ -35,7 +35,7 @@ module Revealcr
             exit(1)
           end
         end
-        parser.on("-t THEME", "--theme=THEME", "presentation theme (#{THEMES.join("|")})") do |v|
+        parser.on("-t THEME", "--theme=THEME", "presentation theme. default: black (#{THEMES.join("|")})") do |v|
           if THEMES.includes?(v)
             @option.theme = v
           else

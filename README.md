@@ -14,7 +14,8 @@ shards build -v
 
 ```
 Usage: revealcr [options] [index.md]
-    -p PORT, --port=PORT             port with running
+    -p PORT, --port=PORT             port with running. default: 4000
+    -t THEME, --theme=THEME          presentation theme. default: black (beige|black|blood|league|moon|night|serif|simple|sky|solarized|white)
     -h, --help                       Show this help
 ```
 
