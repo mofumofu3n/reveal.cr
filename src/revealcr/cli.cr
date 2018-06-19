@@ -14,7 +14,7 @@ module Revealcr
     )
 
     def initialize(args = [] of String)
-      @option = Option.new("index.md", 8080, "black")
+      @option = Option.new("index.md", 4000, "black")
       parse_option!(args)
     end
 
