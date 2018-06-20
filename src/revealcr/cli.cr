@@ -5,8 +5,8 @@ module Revealcr
   class CLI
     getter option : Option
 
-    record Option, file : String = "index.md", port : Int32 = 4000, theme : String = "black" do
-      property file, port, theme
+    record Option, file : String = "index.md", port : Int32 = 4000, theme : String = "black", style : (String | Nil) = nil do
+      property file, port, theme, style
     end
 
     THEMES = %w(
@@ -27,6 +27,11 @@ module Revealcr
     def parse_option!(args)
       parser = OptionParser.parse(args) do |parser|
         parser.banner = "Usage: revealcr [options] [index.md]"
+        parser.on("-s CUSTOM_CSS", "--style=CUSTOM_CSS", "custom style.") do |v|
+          if File.exists?(v)
+            @option.style = v
+          end
+        end
         parser.on("-p PORT", "--port=PORT", "port with running. default: 4000") do |v|
           if /[0-9]+/ =~ v
             @option.port = v.to_i

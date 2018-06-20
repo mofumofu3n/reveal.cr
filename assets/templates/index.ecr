@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="revealjs/css/reveal.css">
     <link rel="stylesheet" href="revealjs/css/theme/<%= @option.theme %>.css" id="theme">
     <link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+    <% if @option.style %>
+    <link rel="stylesheet" href="<%= @option.style %>">
+    <% end %>
     <script>
       var link = document.createElement('link');
       link.rel = 'stylesheet';
