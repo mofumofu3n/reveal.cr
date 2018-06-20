@@ -3,6 +3,8 @@ require "option_parser"
 
 module Revealcr
   class CLI
+    getter option : Option
+
     record Option, file : String, port : Int32, theme : String do
       property file, port, theme
     end
@@ -13,12 +15,12 @@ module Revealcr
       simple sky solarized white
     )
 
-    def initialize(args = [] of String)
+    def initialize
       @option = Option.new("index.md", 4000, "black")
-      parse_option!(args)
     end
 
     def run
+      parse_option!(ARGV)
       Server.new(@option).serve
     end
 
@@ -29,39 +31,41 @@ module Revealcr
           if /[0-9]+/ =~ v
             @option.port = v.to_i
           else
-            STDERR.puts "'PORT' is only numeric value."
-            STDERR.puts ""
-            STDERR.puts parser
-            exit(1)
+            error(parser, "'PORT' is only numeric value.")
           end
         end
         parser.on("-t THEME", "--theme=THEME", "presentation theme. default: black (#{THEMES.join("|")})") do |v|
-          if THEMES.includes?(v)
-            @option.theme = v
-          else
-            STDERR.puts "'#{v}' theme is not found.\nYou can select from (#{THEMES.join("|")})"
-            STDERR.puts ""
-            STDERR.puts parser
-            exit(1)
+          unless set_theme(v)
+            error(parser, "'#{v}' theme is not found.\nYou can select from (#{THEMES.join("|")})")
           end
         end
         parser.on("-h", "--help", "Show this help") { puts parser; exit(0) }
         parser.invalid_option do |flag|
-          STDERR.puts "ERROR: #{flag} is not a valid option."
-          STDERR.puts ""
-          STDERR.puts parser
-          exit(1)
+          error(parser, "ERROR: #{flag} is not a valid option.")
         end
       end
 
       @option.file = args.first? || @option.file
 
       if !File.exists?(@option.file)
-        STDERR.puts "[ERROR] #{@option.file} not found."
-        STDERR.puts ""
-        STDERR.puts parser
-        exit(1)
+        error(parser, "[ERROR] #{@option.file} not found.")
       end
+    end
+
+    def set_theme(value)
+      if THEMES.includes?(value)
+        @option.theme = value
+        true
+      else
+        false
+      end
+    end
+
+    def error(parser, message)
+      STDERR.puts message
+      STDERR.puts ""
+      STDERR.puts parser
+      exit(1)
     end
   end
 end

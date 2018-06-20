@@ -1,3 +1,3 @@
 require "./revealcr/*"
 
-Revealcr::CLI.new(ARGV).run
+Revealcr::CLI.new.run

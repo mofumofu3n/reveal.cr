@@ -1,7 +1,3 @@
 require "./spec_helper"
+require "./revealcr/*"
 
-describe Revealcr do
-  it "works" do
-    false.should eq(true)
-  end
-end
