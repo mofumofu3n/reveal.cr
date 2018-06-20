@@ -19,8 +19,8 @@ module Revealcr
       @option = Option.new("index.md", 4000, "black")
     end
 
-    def run
-      parse_option!(ARGV)
+    def run(args)
+      parse_option!(args)
       Server.new(@option).serve
     end
 
