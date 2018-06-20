@@ -36,7 +36,7 @@ module Revealcr
       end
     end
 
-    private def mime_type(path)
+    def mime_type(path)
       case path
       when /\.jpg$/
         "image/jpeg"

@@ -5,7 +5,7 @@ module Revealcr
   class CLI
     getter option : Option
 
-    record Option, file : String, port : Int32, theme : String do
+    record Option, file : String = "index.md", port : Int32 = 4000, theme : String = "black" do
       property file, port, theme
     end
 
@@ -16,7 +16,7 @@ module Revealcr
     )
 
     def initialize
-      @option = Option.new("index.md", 4000, "black")
+      @option = Option.new
     end
 
     def run(args)
